@@ -3,7 +3,7 @@ import axios from "axios";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 
-// Registrar los componentes de Chart.js para el gráfico de barras
+// Registrar los componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
@@ -12,8 +12,9 @@ const Dashboard = () => {
   const [month, setMonth] = useState("all");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/pqrs")  // Asegúrate de que la URL es correcta
+    axios.get("http://localhost:5000/api/pqrs")
       .then((response) => {
+        console.log("Datos recibidos: ", response.data);
         setData(response.data);
       })
       .catch((error) => {
@@ -21,7 +22,13 @@ const Dashboard = () => {
       });
   }, []);
 
-  // Filtrar los datos por año y mes
+  // Cerrar sesión
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Eliminar token de sesión
+    window.location.href = "/"; // Redirigir al login
+  };
+
+  // Filtrar datos por año y mes
   const filterData = (data) => {
     return data.filter((item) => {
       const itemDate = new Date(item.date);
@@ -41,11 +48,12 @@ const Dashboard = () => {
     if (!acc[date]) {
       acc[date] = { FINALIZADO: 0, ABIERTO: 0 };
     }
-    acc[date][item.value]++;
+    acc[date]["FINALIZADO"] += parseInt(item.finalizado, 10);
+    acc[date]["ABIERTO"] += parseInt(item.abierto, 10);
     return acc;
   }, {});
 
-  // Convertir los datos agrupados en el formato que Chart.js puede usar
+  // Configuración de datos para el gráfico
   const chartData = {
     labels: Object.keys(groupedData),
     datasets: [
@@ -80,8 +88,16 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-8">
-      <h2 className="text-center text-2xl font-semibold mb-6">Dashboard</h2>
+    <div className="p-8 relative">
+      {/* Botón de Cerrar Sesión */}
+      <button
+        onClick={handleLogout}
+        className="absolute top-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition-all"
+      >
+        Cerrar Sesión
+      </button>
+
+      <h2 className="text-center text-3xl font-semibold mb-6 text-orange-600">Dashboard</h2>
 
       {/* Filtros de Año y Mes */}
       <div className="flex flex-col items-center gap-4 mb-6">
@@ -124,10 +140,7 @@ const Dashboard = () => {
 
       {/* Gráfico */}
       <div className="mt-8">
-        <Bar
-          data={chartData}
-          options={chartOptions}
-        />
+        <Bar data={chartData} options={chartOptions} />
       </div>
     </div>
   );
