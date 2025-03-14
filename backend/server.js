@@ -1,25 +1,27 @@
 // backend/server.js
 const express = require('express');
 const cors = require('cors');
-const app = express();
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
+const pqrsRoutes = require("./routes/pqrs");
 
+const app = express();
 
-// Habilitar CORS para permitir que el frontend consuma esta API
+// Habilitar CORS y bodyParser
 app.use(cors());
 app.use(bodyParser.json());
-
-// Middleware para manejar JSON
 app.use(express.json());
 
-// Ruta API de ejemplo
+// Rutas
+app.use('/api/auth', authRoutes);
+app.use('/api', pqrsRoutes); // Se mueve arriba del listen
+
+// Ruta de prueba
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from backend' });
 });
 
-app.use('/api/auth', authRoutes);  // Ruta para autenticación
-
+// Inicializar servidor
 const port = 5000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
