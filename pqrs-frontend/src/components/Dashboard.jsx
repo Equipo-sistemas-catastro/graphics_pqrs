@@ -1,34 +1,39 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
+import { Bar, Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from "chart.js";
 
 // Registrar los componentes de Chart.js
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
+  const [tramitesMes, setTramitesMes] = useState([]);
   const [year, setYear] = useState("2024");
   const [month, setMonth] = useState("all");
 
   useEffect(() => {
+    // Obtener los datos de PQRS
     axios.get("http://localhost:5000/api/pqrs")
       .then((response) => {
-        console.log("Datos recibidos: ", response.data);
         setData(response.data);
       })
       .catch((error) => {
         console.error("Hubo un error al obtener los datos", error);
       });
+
+    // Obtener los datos de trámites por mes
+    // Obtener los datos de trámites por mes
+    axios.get("http://localhost:5000/api/tramites-mes")
+      .then((response) => {
+        console.log("Datos Trámites por mes:", response.data);  // Verifica los datos recibidos
+        setTramitesMes(response.data);
+      })
+      .catch((error) => {
+        console.error("Hubo un error al obtener los trámites por mes", error);
+      });
   }, []);
 
-  // Cerrar sesión
-  const handleLogout = () => {
-    localStorage.removeItem("token"); // Eliminar token de sesión
-    window.location.href = "/"; // Redirigir al login
-  };
-
-  // Filtrar datos por año y mes
   const filterData = (data) => {
     return data.filter((item) => {
       const itemDate = new Date(item.date);
@@ -42,7 +47,6 @@ const Dashboard = () => {
     });
   };
 
-  // Agrupar los datos por fecha y contar los estados
   const groupedData = filterData(data).reduce((acc, item) => {
     const date = item.date.split("T")[0];
     if (!acc[date]) {
@@ -53,7 +57,6 @@ const Dashboard = () => {
     return acc;
   }, {});
 
-  // Configuración de datos para el gráfico
   const chartData = {
     labels: Object.keys(groupedData),
     datasets: [
@@ -74,24 +77,35 @@ const Dashboard = () => {
     ],
   };
 
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Gráfico de Estado por Fecha',
+  // Verificación de tramitesMes antes de usarlo
+  const tramitesMesLabels = tramitesMes.map(item => `${item.anio}-${item.mes.toString().padStart(2, '0')}`);
+  const tramitesMesData = tramitesMes.map(item => item.total_tramites);
+
+  // Filtrar valores nulos o indefinidos en tramitesMes
+  const validTramitesMesData = tramitesMesData.filter(value => value != null);
+  const validTramitesMesLabels = tramitesMesLabels.slice(0, validTramitesMesData.length);
+
+  const tramitesMesChartData = {
+    labels: validTramitesMesLabels,
+    datasets: [
+      {
+        label: 'Total Trámites',
+        data: validTramitesMesData,
+        borderColor: 'rgba(124, 80, 124, 0.8)',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderWidth: 2,
+        fill: true,
       },
-      legend: {
-        position: 'top',
-      },
-    },
+    ],
   };
 
   return (
     <div className="p-8 relative">
-      {/* Botón de Cerrar Sesión */}
       <button
-        onClick={handleLogout}
+        onClick={() => {
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        }}
         className="absolute top-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition-all"
       >
         Cerrar Sesión
@@ -99,7 +113,6 @@ const Dashboard = () => {
 
       <h2 className="text-center text-3xl font-semibold mb-6 text-orange-600">Dashboard</h2>
 
-      {/* Filtros de Año y Mes */}
       <div className="flex flex-col items-center gap-4 mb-6">
         <div className="flex items-center gap-4">
           <label className="text-lg font-medium">Año:</label>
@@ -122,25 +135,37 @@ const Dashboard = () => {
             className="px-4 py-2 border border-gray-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Todos los meses</option>
-            <option value="1">Enero</option>
-            <option value="2">Febrero</option>
-            <option value="3">Marzo</option>
-            <option value="4">Abril</option>
-            <option value="5">Mayo</option>
-            <option value="6">Junio</option>
-            <option value="7">Julio</option>
-            <option value="8">Agosto</option>
-            <option value="9">Septiembre</option>
-            <option value="10">Octubre</option>
-            <option value="11">Noviembre</option>
-            <option value="12">Diciembre</option>
+            {[...Array(12)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>{new Date(0, i).toLocaleString('es-ES', { month: 'long' })}</option>
+            ))}
           </select>
         </div>
       </div>
 
-      {/* Gráfico */}
       <div className="mt-8">
-        <Bar data={chartData} options={chartOptions} />
+        <Bar
+          data={chartData}
+          options={{
+            responsive: true,
+            plugins: {
+              title: { display: true, text: 'Estados por Fecha' },
+              legend: { position: 'top' },
+            },
+          }}
+        />
+      </div>
+
+      <div className="mt-8">
+        <Line
+          data={tramitesMesChartData}
+          options={{
+            responsive: true,
+            plugins: {
+              title: { display: true, text: 'Total Trámites por Mes y Año' },
+              legend: { position: 'top' },
+            },
+          }}
+        />
       </div>
     </div>
   );
