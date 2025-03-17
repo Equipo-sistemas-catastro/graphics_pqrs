@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from "chart.js";
+import BarChart3D from '../components/BarChart3D';
 
 // Registrar los componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
@@ -167,6 +168,9 @@ const Dashboard = () => {
           }}
         />
       </div>
+
+      <h2 className="pt-10 text-center text-green-800 text-2xl font-bold">Gráfico 3D de PQRS por Estado</h2>
+      <BarChart3D />
     </div>
   );
 };

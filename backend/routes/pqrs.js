@@ -60,4 +60,28 @@ router.get('/tramites-mes', async (req, res) => {
   }
 });
 
+// Tercera gráfica
+router.get('/pqrs-data', async (req, res) => {
+  try {
+    const query = `
+      SELECT estado, fecha_respuesta
+      FROM pqrs_data_2024_2025
+    `;
+
+    const result = await client.query(query);  // Cambiado de pool.query() a client.query()
+
+    if (!Array.isArray(result.rows)) {
+      console.error('Error: La consulta no devolvió un array', result);
+      return res.status(500).json({ error: 'Los datos no tienen el formato esperado' });
+    }
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al obtener los datos de PQRS:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+
+
 module.exports = router;
