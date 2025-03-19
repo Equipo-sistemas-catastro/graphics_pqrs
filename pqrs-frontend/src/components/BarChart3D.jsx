@@ -12,7 +12,7 @@ const SphereSegment = ({ radius, angleStart, angleEnd, color, label, labelPositi
                 <meshBasicMaterial
                     color={color} 
                     transparent={true} // Hacerlo completamente transparente
-                    opacity={0.5} // Hacer que sea semitransparente
+                    opacity={0.3} // Hacer que sea semitransparente
                 />
             </mesh>
 
@@ -50,7 +50,7 @@ const PieChart3D = () => {
     useEffect(() => {
         // Cargar la textura del mapa de Medellín
         const textureLoader = new THREE.TextureLoader();
-        textureLoader.load('../../public/mapa_medellin.png', (loadedTexture) => {
+        textureLoader.load('', (loadedTexture) => {
             setTexture(loadedTexture);
         });
 
@@ -153,8 +153,11 @@ const PieChart3D = () => {
                     near: 1,
                     far: 100,
                 }}
-                style={{ height: '100vh', width: '100%' }}
+                style={{ height: '100vh', width: '100%', background: "#1a1a1a", marginTop: "21px" }}
             >
+                <color attach="background" args={["#1a1a1a"]} />
+                <fog attach="fog" args={["#1a1a1a", 50, 100]} />
+
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[5, 5, 5]} intensity={1} />
 
@@ -163,7 +166,7 @@ const PieChart3D = () => {
                     <mesh>
                         <sphereGeometry args={[10, 32, 32]} />
                         {/* Material sin color, solo la textura */}
-                        <meshBasicMaterial map={texture} />
+                        <meshBasicMaterial map={texture} wireframe />
                     </mesh>
                 )}
 

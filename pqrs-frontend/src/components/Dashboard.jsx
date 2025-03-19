@@ -114,13 +114,13 @@ const Dashboard = () => {
 
       <h2 className="text-center text-3xl font-semibold mb-6 text-orange-600">Dashboard</h2>
 
-      <div className="flex flex-col items-center gap-4 mb-6">
+      <div className="flex flex-row items-center gap-4 mb-6">
         <div className="flex items-center gap-4">
           <label className="text-lg font-medium">Año:</label>
           <select
             value={year}
             onChange={(e) => setYear(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="px-4 py-2 border border-gray-300 bg-blue-200 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             <option value="all">Todos los años</option>
             <option value="2024">2024</option>
@@ -133,7 +133,7 @@ const Dashboard = () => {
           <select
             value={month}
             onChange={(e) => setMonth(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="px-4 py-2 border border-gray-300 bg-blue-200 rounded-md text-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             <option value="all">Todos los meses</option>
             {[...Array(12)].map((_, i) => (
