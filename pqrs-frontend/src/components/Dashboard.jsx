@@ -143,24 +143,37 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 w-full h-[450px]">
         <Bar
           data={chartData}
           options={{
             responsive: true,
+            maintainAspectRatio: false, // Permite que el div controle la altura
             plugins: {
               title: { display: true, text: 'Estados por Fecha' },
               legend: { position: 'top' },
+            },
+            layout: {
+              padding: 10,
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+              },
+              y: {
+                beginAtZero: true,
+              },
             },
           }}
         />
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 w-full h-[400px]">
         <Line
           data={tramitesMesChartData}
           options={{
             responsive: true,
+            maintainAspectRatio: false, // Permite que el div controle la altura
             plugins: {
               title: { display: true, text: 'Total Trámites por Mes y Año' },
               legend: { position: 'top' },
@@ -168,6 +181,7 @@ const Dashboard = () => {
           }}
         />
       </div>
+
 
       <h2 className="pt-10 text-center text-green-800 text-2xl font-bold">Gráfico 3D de PQRS por Estado</h2>
       <BarChart3D />
