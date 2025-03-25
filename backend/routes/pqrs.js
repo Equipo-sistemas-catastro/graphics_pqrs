@@ -93,7 +93,7 @@ router.get('/estado-atempt', async (req, res) => {
     res.json(data);
   } catch (err) {
     console.error('Error al obtener los datos de estado:', err);
-    res.status(500).json({ error: 'Hubo un problema al obtener los datos' });
+    res.status(500).json({ error: 'Hubo un problema al obtener los datos de estado' });
   }
 });
 
