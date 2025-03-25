@@ -43,7 +43,7 @@ const Tema = () => {
   return (
     <div className="w-full pt-7 mt-15 min-h-screen"> {/* Fondo de toda la página y altura mínima */}
       <h2 className="text-2xl font-bold mb-2 mt-20 text-center text-blue-800">PQRS por Tema</h2>
-      <p className="mb-6 text-center text-blue-700">Cantidad de solicitudes de acuerdo al tema de consulta por parte del usuario</p>
+      <p className="mb-4 text-center text-blue-700">Cantidad de solicitudes de acuerdo al tema de consulta por parte del usuario</p>
 
       {data ? (
         <div className="relative w-full h-[500px] mb-10"> {/* Añadir un margen hacia abajo para separar las gráficas */}

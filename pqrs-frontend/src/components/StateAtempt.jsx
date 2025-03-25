@@ -44,11 +44,11 @@ const StateAtempt = () => {
   };
 
   return (
-    <div className="w-full h-[400px]">
+    <div className="w-full h-[450px]">
       {/* Título y subtítulo como texto separado */}
-      <div style={{ textAlign: "center", marginBottom: "10px", marginTop: "20px", color: 'rgba(75, 28, 27, 0.8)', fontWeight: 'bold', fontSize: '24px' }}>
+      <div style={{ textAlign: "center", marginTop: "40px", color: 'rgba(75, 28, 27, 0.8)', fontWeight: 'bold', fontSize: '24px' }}>
         <h2 style={{ margin: 0 }}>Cantidad de Estados</h2>
-        <p style={{ margin: 0, fontSize: "14px", color: 'rgba(75, 28, 27, 0.8)', fontWeight: 'bold' }}>
+        <p style={{ fontSize: "14px", color: 'rgba(75, 28, 27, 0.8)', fontWeight: 'bold' }}>
           Cantidad de trámites por categoría en un periodo comprendido desde 2024 hasta la fecha
         </p>
       </div>
@@ -62,7 +62,7 @@ const StateAtempt = () => {
           plugins: {
             title: {
               display: true,
-              text: 'Cantidad de Estados', // Título principal
+              //text: 'Cantidad de Estados', // Título principal
               font: {
                 size: 18,
               },
