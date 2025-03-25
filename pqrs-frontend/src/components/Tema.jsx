@@ -56,7 +56,7 @@ const Tema = () => {
                 datalabels: {
                   display: true, // Habilitamos los datalabels
                   align: 'top',  // Alineamos las etiquetas por encima
-                  color: '#007074', // Cambia el color a rojo (puedes elegir otro color)
+                  color: 'rgba(138, 12, 132, 0.7)', // Cambia el color del label
                   font: {
                     weight: "bold", // Hacemos el texto en negrita
                     size: 12, // Tamaño de la fuente
