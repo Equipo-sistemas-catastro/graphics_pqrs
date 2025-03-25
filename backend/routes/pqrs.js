@@ -59,8 +59,51 @@ router.get('/tramites-mes', async (req, res) => {
   }
 });
 
+
+// Cuarta Gráfica - PQRS pendientes, vencidos
+router.get('/estado-atempt', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        SUM(pendiente) AS pendiente,
+        SUM(vencidos) AS vencidos,
+        SUM(a_tiempo) AS a_tiempo,
+        SUM(oportuno) AS oportuno,
+        SUM(no_oportuno) AS no_oportuno
+      FROM pqrs_data_2024_2025;
+    `;
+    
+    const result = await client.query(query);
+    
+    // Asegurar que haya resultados
+    if (result.rows.length === 0) {
+      return res.json({ pendiente: 0, vencidos: 0, a_tiempo: 0, oportuno: 0, no_oportuno: 0 });
+    }
+
+    // Devolver los datos con las claves correctas
+    const row = result.rows[0];
+    const data = {
+      pendiente: row.pendiente || 0,
+      vencidos: row.vencidos || 0,
+      a_tiempo: row.a_tiempo || 0,
+      oportuno: row.oportuno || 0,
+      no_oportuno: row.no_oportuno || 0
+    };
+
+    res.json(data);
+  } catch (err) {
+    console.error('Error al obtener los datos de estado:', err);
+    res.status(500).json({ error: 'Hubo un problema al obtener los datos' });
+  }
+});
+
+
+
+
+
+
 // Tercera gráfica - Consulta por estado (FINALIZADO y ABIERTO)
-router.get('/pqrs-estado', async (req, res) => {
+/* router.get('/pqrs-estado', async (req, res) => {
   try {
     // Consulta para contar los registros de estado FINALIZADO y ABIERTO
     const query = `
@@ -97,6 +140,6 @@ router.get('/pqrs-estado', async (req, res) => {
     console.error('Error al obtener los datos por estado:', err);
     res.status(500).json({ error: 'Hubo un problema al obtener los datos de la base de datos' });
   }
-});
+}); */
 
 module.exports = router;

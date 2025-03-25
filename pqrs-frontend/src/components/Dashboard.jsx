@@ -64,15 +64,15 @@ const Dashboard = () => {
       {
         label: 'FINALIZADO',
         data: Object.values(groupedData).map((item) => item.FINALIZADO),
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 19, 192, 0.6)',
+        borderColor: 'rgba(75, 19, 192, 1)',
         borderWidth: 1,
       },
       {
         label: 'ABIERTO',
         data: Object.values(groupedData).map((item) => item.ABIERTO),
-        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(125, 10, 78, 0.7)',
+        borderColor: 'rgba(125, 10, 78, 0.6)',
         borderWidth: 1,
       },
     ],
@@ -183,9 +183,10 @@ const Dashboard = () => {
       </div>
 
 
-      <h2 className="pt-10 text-center text-green-800 text-2xl font-bold">Gráfico 3D de PQRS por Estado</h2>
-      <BarChart3D />
+      { /* <h2 className="pt-10 text-center text-green-800 text-2xl font-bold">Gráfico 3D de PQRS por Estado</h2>
+      <BarChart3D />repositories */}
     </div>
+
   );
 };
 
