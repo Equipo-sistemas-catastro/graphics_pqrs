@@ -4,6 +4,7 @@ import { Bar, Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from "chart.js";
 import BarChart3D from '../components/BarChart3D';
 import StateAtempt from '../components/StateAtempt';
+import Tema from "./Tema";
 
 // Registrar los componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
@@ -113,7 +114,7 @@ const Dashboard = () => {
         Cerrar Sesión
       </button>
 
-      <h2 className="text-center text-3xl font-semibold mb-6 text-orange-600">Dashboard</h2>
+      <h2 className="text-center text-3xl font-semibold mb-6 text-orange-600">Dashboard PQRS</h2>
 
       <div className="flex flex-row items-center gap-4 mb-6">
         <div className="flex items-center gap-4">
@@ -153,6 +154,17 @@ const Dashboard = () => {
             plugins: {
               title: { display: true, text: 'Estados por Fecha' },
               legend: { position: 'top' },
+              datalabels: {
+                display: false, // Aseguramos que los valores estén visibles si es necesario
+                color: 'blue',
+                align: 'center', // Alineación de los valores en el centro de las barras
+                anchor: 'end',  // Ancla el texto al principio de la barra (hacia arriba)
+                // Ajustamos la posición hacia arriba con padding negativo
+                offset: 20,
+                padding: {
+                  top: 10,  // Esto mueve los valores un poco más arriba de las barras
+                },
+              },
             },
             layout: {
               padding: 10,
@@ -174,10 +186,21 @@ const Dashboard = () => {
           data={tramitesMesChartData}
           options={{
             responsive: true,
-            maintainAspectRatio: false, // Permite que el div controle la altura
+            maintainAspectRatio: false,
             plugins: {
-              title: { display: true, text: 'Total Trámites por Mes y Año' },
-              legend: { position: 'top' },
+              title: { display: true, text: "Total Trámites por Mes y Año" },
+              legend: { position: "top" },
+              datalabels: {
+                display: true, // Mostrar los valores
+                color: "#a5158c",
+                font: {
+                  size: 12,
+                  weight: "bold",
+                },
+                anchor: "center", // Centrado en el punto
+                align: "bottom", // Alineación de los valores sobre los puntos
+                offset: -30, // Desplazamiento hacia arriba
+              },
             },
           }}
         />
@@ -189,6 +212,8 @@ const Dashboard = () => {
 
       <h1>State Atempts</h1>
       <StateAtempt />
+
+      <Tema />
 
     </div>
   );

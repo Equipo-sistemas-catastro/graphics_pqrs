@@ -98,6 +98,30 @@ router.get('/estado-atempt', async (req, res) => {
 });
 
 
+// Quinta Gráfica - Tema
+router.get('/pqrs-tema', async (req, res) => {
+  try {
+    const query = `
+      SELECT tema, COUNT(*) AS total
+      FROM pqrs_data_2024_2025
+      GROUP BY tema
+      ORDER BY total DESC;
+    `;
+
+    const result = await client.query(query);
+
+    // Formatear los datos en JSON
+    const data = result.rows.map(row => ({
+      tema: row.tema,
+      total: parseInt(row.total, 10)  // Convertir a número
+    }));
+
+    res.json(data);
+  } catch (err) {
+    console.error('Error al obtener los datos de temas:', err);
+    res.status(500).json({ error: 'Hubo un problema al obtener los datos' });
+  }
+});
 
 
 
