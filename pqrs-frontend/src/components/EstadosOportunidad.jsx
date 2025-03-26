@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // Registrando los componentes de Chart.js
 ChartJS.register(
@@ -18,6 +19,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  ChartDataLabels,
   Title,
   Tooltip,
   Legend
@@ -112,6 +114,7 @@ const EstadosPqrsOportunidad = () => {
       },
     },
   };
+  
 
   return (
     <div>
