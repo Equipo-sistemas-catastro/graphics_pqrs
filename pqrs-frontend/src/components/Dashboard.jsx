@@ -5,6 +5,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, 
 import BarChart3D from '../components/BarChart3D';
 import StateAtempt from '../components/StateAtempt';
 import Tema from "./Tema";
+import EstadoOportuno from "./EstadoOportuno";
+import EstadosPqrsOportunidad from "./EstadosOportunidad";
 
 // Registrar los componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
@@ -152,7 +154,7 @@ const Dashboard = () => {
             responsive: true,
             maintainAspectRatio: false, // Permite que el div controle la altura
             plugins: {
-              title: { display: true, text: 'Estados por Fecha' },
+              title: { display: true, text: 'Estadode PQRS por Fecha' },
               legend: { position: 'top' },
               datalabels: {
                 display: false, // Aseguramos que los valores estén visibles si es necesario
@@ -188,7 +190,7 @@ const Dashboard = () => {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              title: { display: true, text: "Total Trámites por Mes y Año" },
+              title: { display: true, text: "Total PQRS por Mes y Año" },
               legend: { position: "top" },
               datalabels: {
                 display: true, // Mostrar los valores
@@ -213,6 +215,10 @@ const Dashboard = () => {
       <StateAtempt />
 
       <Tema />
+
+      <EstadoOportuno />
+
+      <EstadosPqrsOportunidad />
     </div>
   );
 };

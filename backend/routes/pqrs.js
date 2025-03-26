@@ -123,6 +123,70 @@ router.get('/pqrs-tema', async (req, res) => {
   }
 });
 
+// Aca va la logica de la gráfica 6
+// Sexta Gráfica - Oportuno vs No Oportuno por Mes y Año
+router.get('/estado-oportuno', async (req, res) => {
+  try {
+    const result = await client.query(`
+      SELECT 
+        anio, 
+        mes, 
+        SUM(CASE WHEN oportunidad = 'OPORTUNO' THEN 1 ELSE 0 END) AS oportuno,
+        SUM(CASE WHEN oportunidad = 'NO OPORTUNO' THEN 1 ELSE 0 END) AS no_oportuno,
+        SUM(CASE WHEN oportunidad = 'A TIEMPO' THEN 1 ELSE 0 END) AS a_tiempo
+      FROM pqrs_data_2024_2025
+      GROUP BY anio, mes
+      ORDER BY anio, mes;
+    `);
+
+    const data = result.rows.map(row => ({
+      anio: row.anio,
+      mes: row.mes,
+      oportuno: row.oportuno,
+      no_oportuno: row.no_oportuno,
+      a_tiempo: row.a_tiempo
+    }));
+
+    res.json(data);
+  } catch (err) {
+    console.error('Error al obtener datos:', err);
+    res.status(500).json({ error: 'Error al obtener datos' });
+  }
+});
+
+// Septima gráfica
+router.get('/estados-oportunidad-pqrs', async (req, res) => {
+  try {
+    const query = `
+      SELECT 
+        mes,
+        anio,
+        estado,
+        oportunidad,
+        COUNT(*) AS total
+      FROM pqrs_data_2024_2025
+      WHERE estado IN ('ABIERTO', 'FINALIZADO')
+      GROUP BY mes, anio, estado, oportunidad
+      ORDER BY anio, mes, estado, oportunidad;
+    `;
+    
+    const result = await client.query(query);
+    res.json(result.rows);  // Retorna los datos agrupados
+  } catch (error) {
+    console.error("Error al obtener los datos de la gráfica", error.message);  // Mostrar solo el mensaje de error
+    console.error(error);  // Mostrar el objeto de error completo para más detalles
+    res.status(500).send("Error en la consulta");
+  }
+});
+
+
+
+
+module.exports = router;
+
+
+// Séptima Gráfica - PQRS Abierto-Oportuno y Abierto-No Oportuno, Abierto-A Tiempo, PQRS Finalizado-Oportuno, Finalizado-No Oportuno, Finalizado-A Tiempo.
+
 
 
 
