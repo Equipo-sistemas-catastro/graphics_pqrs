@@ -180,6 +180,32 @@ router.get('/estados-oportunidad-pqrs', async (req, res) => {
 });
 
 
+// Nueva ruta para la gráfica de oportunidad por tema
+router.get('/estadisticas-oportunidad-por-tema', async (req, res) => {
+  try {
+      const query = `
+          SELECT 
+              tema, 
+              oportunidad, 
+              COUNT(*) as cantidad
+          FROM 
+              pqrs_data_2024_2025
+          WHERE 
+              oportunidad IN ('OPORTUNO', 'NO OPORTUNO', 'A TIEMPO')
+          GROUP BY 
+              tema, oportunidad
+          ORDER BY 
+              tema, oportunidad;
+      `;
+      const result = await client.query(query);
+      res.json(result.rows); // Ajusta según tu driver de DB (puede ser result.rows, result[0], etc.)
+  } catch (error) {
+      console.error('Error al obtener estadísticas:', error);
+      res.status(500).send('Error interno del servidor');
+  }
+});
+
+
 
 
 module.exports = router;

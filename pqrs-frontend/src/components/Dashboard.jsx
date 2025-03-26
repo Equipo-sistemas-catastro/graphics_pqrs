@@ -7,6 +7,7 @@ import StateAtempt from '../components/StateAtempt';
 import Tema from "./Tema";
 import EstadoOportuno from "./EstadoOportuno";
 import EstadosPqrsOportunidad from "./EstadosOportunidad";
+import OportunidadPorTema from "./OportunidadPorTema";
 
 // Registrar los componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
@@ -224,6 +225,8 @@ const Dashboard = () => {
       <EstadoOportuno />
 
       <EstadosPqrsOportunidad />
+
+      <OportunidadPorTema />
     </div>
   );
 };
