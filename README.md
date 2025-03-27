@@ -1,6 +1,4 @@
-GRAFICAS PARA LA GESTIÓN DE LAS PQRS
-
-# 📌 Proyecto React + Express + Vite
+# 📌 Gráficas para la gestión de las PQRS
 
 
 ## 📖 Descripción
