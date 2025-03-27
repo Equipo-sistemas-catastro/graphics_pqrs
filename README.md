@@ -6,33 +6,29 @@
 - Este es un proyecto desarrollado con React, Express, y Vite, que incluye autenticación, gráficos interactivos con Chart.js, Highcharts, y Recharts, además de comunicación con APIs mediante Axios.
 
 
-## 🚀 Tecnologías Utilizadas
+📌 **Frontend (React + Vite)**
 
-📌 Frontend (React + Vite)
+- [React 19](https://react.dev/)
+- [React Router Dom](https://reactrouter.com/)
+- [Axios](https://axios-http.com/)
+- [Chart.js](https://www.chartjs.org/) + [Chartjs-plugin-datalabels](https://chartjs-plugin-datalabels.netlify.app/)
+- [Highcharts](https://www.highcharts.com/) + [Highcharts React Official](https://github.com/highcharts/highcharts-react)
+- [Recharts](https://recharts.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started) + [Drei](https://github.com/pmndrs/drei)
 
-- React 19
-- React Router Dom
-- Axios
-- Chart.js + Chartjs-plugin-datalabels
-- Highcharts + Highcharts React Official
-- Recharts
-- TailwindCSS
-- React Three Fiber + Drei
+📌 **Backend (Express)**
 
+- [Express](https://expressjs.com/) (Asegurar que esté instalado si se usa)
+- [PostgreSQL](https://www.postgresql.org/) (Base de Datos)
+- [Sequelize](https://sequelize.org/) (ORM para Postgres)
+- [JSON Web Token (JWT)](https://jwt.io/) para autenticación
 
-📌 Backend (Express)
+📌 **Herramientas de Desarrollo**
 
-- Express (Asegurar que esté instalado si se usa)
-- PostgreSQL (Base de Datos)
-- Sequelize (ORM para Postgres)
-- JSON Web Token (JWT) para autenticación
-
-
-📌 Herramientas de Desarrollo
-
-- Vite
-- ESLint + Plugins para React
-- PostCSS + Autoprefixer
+- [Vite](https://vitejs.dev/)
+- [ESLint](https://eslint.org/) + [Plugins para React](https://github.com/jsx-eslint/eslint-plugin-react)
+- [PostCSS](https://postcss.org/) + [Autoprefixer](https://github.com/postcss/autoprefixer)
 
 
 # ⚙️ Instalación y Configuración
