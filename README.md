@@ -80,7 +80,7 @@
 
 📄 Licencia
 
-### Este proyecto está bajo la licencia MIT. Puedes usarlo y modificarlo libremente. Usa el código con sabiduría y ética. 🎯
+### Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT). Puedes usarlo y modificarlo libremente. Usalo con sabiduría y ética.🎯
 
 
 
