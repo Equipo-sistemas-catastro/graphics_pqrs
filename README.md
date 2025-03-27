@@ -44,13 +44,16 @@ GRAFICAS PARA LA GESTIÓN DE LAS PQRS
 
 ## 2️⃣ Instalar dependencias
 ![Captura desde 2025-03-27 13-09-20](https://github.com/user-attachments/assets/15156b8b-a6bf-4a95-af8d-75ecc67a90af)
+
 - Si el proyecto tiene backend, instala también las dependencias en la carpeta correspondiente.
 
 ## 3️⃣ Configurar variables de entorno
 ![Captura desde 2025-03-27 13-10-34](https://github.com/user-attachments/assets/de9062e6-1944-427e-9303-3a5cde341c26)
+
 - Si usas autenticación, agrega las claves necesarias para Firebase, Auth0 u otro proveedor.
 
 - Creación del archivo .env, que es donde se escribirá la lógica de la conexión a la base de datos.
+- 
 ![Captura desde 2025-03-27 13-18-16](https://github.com/user-attachments/assets/004481f2-62bb-449d-8eaa-565a1b1a5a60)
 
 
