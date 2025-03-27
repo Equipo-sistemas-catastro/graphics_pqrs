@@ -134,6 +134,18 @@
 - 📌 Problema: Express no puede conectarse a la base de datos PostgreSQL.
 ✅ Solución:
   - Asegúrate de que PostgreSQL está corriendo (`systemctl status postgresql`).
+  - Verifica las credenciales en el archivo `.env`:
+    ![Captura desde 2025-03-27 14-19-11](https://github.com/user-attachments/assets/c569f0fb-4948-49bf-b114-206548af743a)
+
+
+### 🔹 7. Error: "SequelizeDatabaseError: relation does not exist"
+- 📌 Problema: Sequelize no encuentra una tabla en la base de datos.
+✅ Solución:
+  - Ejecuta las migraciones nuevamente:
+    ![Captura desde 2025-03-27 14-21-15](https://github.com/user-attachments/assets/f2522287-c4c1-4fd5-9d65-da210ade4d60)
+
+  - Asegúrate de que `sync() está configurado correctamente:
+
 
 
 
