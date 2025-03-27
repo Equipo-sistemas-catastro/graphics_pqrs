@@ -82,3 +82,34 @@
 ### Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT). Puedes usarlo y modificarlo libremente. Usalo con sabiduría y ética.🎯
 
 
+# 🛠 Errores Comunes y Soluciones
+
+## 🔹 1. Error: "Module not found" en React
+### 📌 Problema: Al importar un componente o módulo, aparece un error de que no se encuentra.
+### ✅ Solución:
+  - Asegúrate de que la importación tiene la ruta correcta.
+  - Si usas imports absolutos en Vite, revisa la configuración en **vite.config.js**:
+    ![Captura desde 2025-03-27 13-59-52](https://github.com/user-attachments/assets/ce976337-8403-4ac5-96c3-f728cca392c4)
+
+
+## 🔹 2. Error: "CORS policy: No 'Access-Control-Allow-Origin'"
+### 📌 Problema: El frontend no puede hacer peticiones al backend porque el servidor bloquea las solicitudes por CORS.
+### ✅ Solución:
+  - En Express, instala y usa **cors**:
+    ![Captura desde 2025-03-27 14-01-23](https://github.com/user-attachments/assets/facc5a35-2e9c-4305-901c-96fc6b18c35f)
+
+  - Luego, en **server.js** o **app.js**:
+    ![Captura desde 2025-03-27 14-02-36](https://github.com/user-attachments/assets/76c9d4d5-b53a-48b7-bb90-9b5d43c4c41f)
+
+
+## 🔹 3. Error: "React Hook useEffect has a missing dependency"
+### 📌 Problema: Aparece un warning porque falta una dependencia en `useEffect`.
+
+
+
+
+
+
+
+
+
