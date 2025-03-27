@@ -84,26 +84,60 @@
 
 # 🛠 Errores Comunes y Soluciones
 
-## 🔹 1. Error: "Module not found" en React
-### 📌 Problema: Al importar un componente o módulo, aparece un error de que no se encuentra.
-### ✅ Solución:
+### 🔹 1. Error: "Module not found" en React
+- 📌 Problema: Al importar un componente o módulo, aparece un error de que no se encuentra.
+✅ Solución:
   - Asegúrate de que la importación tiene la ruta correcta.
-  - Si usas imports absolutos en Vite, revisa la configuración en **vite.config.js**:
+  - Si usas imports absolutos en Vite, revisa la configuración en `vite.config.js`:
     ![Captura desde 2025-03-27 13-59-52](https://github.com/user-attachments/assets/ce976337-8403-4ac5-96c3-f728cca392c4)
 
 
-## 🔹 2. Error: "CORS policy: No 'Access-Control-Allow-Origin'"
-### 📌 Problema: El frontend no puede hacer peticiones al backend porque el servidor bloquea las solicitudes por CORS.
-### ✅ Solución:
-  - En Express, instala y usa **cors**:
+### 🔹 2. Error: "CORS policy: No 'Access-Control-Allow-Origin'"
+- 📌 Problema: El frontend no puede hacer peticiones al backend porque el servidor bloquea las solicitudes por CORS.
+✅ Solución:
+  - En Express, instala y usa `cors`:
     ![Captura desde 2025-03-27 14-01-23](https://github.com/user-attachments/assets/facc5a35-2e9c-4305-901c-96fc6b18c35f)
 
-  - Luego, en **server.js** o **app.js**:
+  - Luego, en `server.js` o `app.js`:
     ![Captura desde 2025-03-27 14-02-36](https://github.com/user-attachments/assets/76c9d4d5-b53a-48b7-bb90-9b5d43c4c41f)
 
 
-## 🔹 3. Error: "React Hook useEffect has a missing dependency"
-### 📌 Problema: Aparece un warning porque falta una dependencia en `useEffect`.
+### 🔹 3. Error: "React Hook useEffect has a missing dependency"
+- 📌 Problema: Aparece un warning porque falta una dependencia en `useEffect`.
+✅ Solución:
+  - Siempre incluye todas las dependencias necesarias:
+    ![Captura desde 2025-03-27 14-08-46](https://github.com/user-attachments/assets/e6e84249-0cb9-498f-bb5c-62de86b79d99)
+
+  - Si la función es externa, usa `useCallback` para evitar problemas de re-renderizado.
+
+
+ ### 🔹 4. Error: "Highcharts is not defined" o "Chart.js not rendering"
+ - 📌 Problema: La gráfica no se renderiza o aparece un error de que no encuentra la librería.
+✅ Solución:
+  - Asegúrate de importar correctamente `Highcharts` o `Chart.js`:
+    ![Captura desde 2025-03-27 14-10-53](https://github.com/user-attachments/assets/f4b892c7-b088-45c8-9336-07a9eb95dbe0)
+
+  - Para `Chart.js`, recuerda registrar los componentes:
+    ![Captura desde 2025-03-27 14-11-38](https://github.com/user-attachments/assets/522565ae-32b2-4369-bcaf-640e3bb676ef)
+
+
+### 🔹 5. Error: "Cannot read properties of undefined (reading 'map')"
+- 📌 Problema: Se intenta hacer `.map()` en una variable que es `undefined`.
+✅ Solución:
+  - Asegúrate de que el **estado o la variable están definidos** antes de usarlos:
+    ![Captura desde 2025-03-27 14-13-41](https://github.com/user-attachments/assets/34365a26-2fe2-44b0-a5fc-b0ff8e392c02)
+
+  - Usa `useState([])` en lugar de `useState(null)` para inicializar el estado vacío.
+ 
+
+### 🔹 6. Error: "UnhandledPromiseRejection: Connection refused to PostgreSQL"
+- 📌 Problema: Express no puede conectarse a la base de datos PostgreSQL.
+✅ Solución:
+  - Asegúrate de que PostgreSQL está corriendo (`systemctl status postgresql`).
+
+
+
+
 
 
 
