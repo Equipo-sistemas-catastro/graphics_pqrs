@@ -80,8 +80,9 @@ GRAFICAS PARA LA GESTIÓN DE LAS PQRS
 4. Envía un pull request 🚀
 
 
+📄 Licencia
 
-
+### Este proyecto está bajo la licencia MIT. Puedes usarlo y modificarlo libremente pero, sabiendo manejar los puntos de inserción. 🎯
 
 
 
