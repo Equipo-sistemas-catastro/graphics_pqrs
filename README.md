@@ -6,6 +6,7 @@
 - Este es un proyecto desarrollado con React, Express, y Vite, que incluye autenticación, gráficos interactivos con Chart.js, Highcharts, y Recharts, además de comunicación con APIs mediante Axios.
 
 
+
 📌 **Frontend (React + Vite)**
 
 - [React 19](https://react.dev/)
@@ -17,12 +18,14 @@
 - [TailwindCSS](https://tailwindcss.com/)
 - [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started) + [Drei](https://github.com/pmndrs/drei)
 
+
 📌 **Backend (Express)**
 
 - [Express](https://expressjs.com/) (Asegurar que esté instalado si se usa)
 - [PostgreSQL](https://www.postgresql.org/) (Base de Datos)
 - [Sequelize](https://sequelize.org/) (ORM para Postgres)
 - [JSON Web Token (JWT)](https://jwt.io/) para autenticación
+
 
 📌 **Herramientas de Desarrollo**
 
@@ -77,10 +80,5 @@
 📄 Licencia
 
 ### Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT). Puedes usarlo y modificarlo libremente. Usalo con sabiduría y ética.🎯
-
-
-
-
-
 
 
