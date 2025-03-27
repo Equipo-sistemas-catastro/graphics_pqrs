@@ -205,7 +205,39 @@ router.get('/estadisticas-oportunidad-por-tema', async (req, res) => {
   }
 });
 
+// Nueva ruta en pqrs.js
+router.get('/solicitantes-clases', async (req, res) => {
+  try {
+    // Consulta para contar solicitantes
+    const solicitantesQuery = `
+      SELECT solicitante, COUNT(*) as cantidad
+      FROM pqrs_data_2024_2025
+      GROUP BY solicitante
+      ORDER BY cantidad DESC
+    `;
 
+    // Consulta para contar clases de solicitud
+    const clasesQuery = `
+      SELECT clase_de_solicitud as clase, COUNT(*) as cantidad
+      FROM pqrs_data_2024_2025
+      GROUP BY clase_de_solicitud
+      ORDER BY cantidad DESC
+    `;
+
+    const [solicitantesRes, clasesRes] = await Promise.all([
+      client.query(solicitantesQuery),
+      client.query(clasesQuery)
+    ]);
+
+    res.json({
+      solicitantes: solicitantesRes.rows,
+      clases: clasesRes.rows
+    });
+  } catch (error) {
+    console.error('Error en consulta:', error);
+    res.status(500).send('Error al obtener datos');
+  }
+});
 
 
 module.exports = router;

@@ -8,6 +8,7 @@ import Tema from "./Tema";
 import EstadoOportuno from "./EstadoOportuno";
 import EstadosPqrsOportunidad from "./EstadosOportunidad";
 import OportunidadPorTema from "./OportunidadPorTema";
+import ClaseSolicitud_Solicitante from "./ClaseSolicitud_Solicitante";
 
 // Registrar los componentes de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
@@ -227,6 +228,8 @@ const Dashboard = () => {
       <EstadosPqrsOportunidad />
 
       <OportunidadPorTema />
+
+      <ClaseSolicitud_Solicitante />
     </div>
   );
 };
