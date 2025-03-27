@@ -61,6 +61,10 @@ GRAFICAS PARA LA GESTIÓN DE LAS PQRS
 ### 🚀 Backend (Express) (si aplica)
 ![Captura desde 2025-03-27 13-12-41](https://github.com/user-attachments/assets/5ba716a7-f6f3-4ff7-baad-b704f34991a6)
 
+- 🚀 El programa cuando se hace la consulta al backend sobre la ruta: http://localhost:5000/api/nombre-archivo-grafica, nos
+  mostrará resultado de las consultas en formato Json, ya que es un formato muy adecuado para la entrega de datos y su posterior
+  consumo desde el frontend.
+
 
 # 🛠️ Comandos Útiles
 ![Captura desde 2025-03-27 13-13-39](https://github.com/user-attachments/assets/44fda2d0-e841-4c3e-a1a2-f3866dc79c40)
