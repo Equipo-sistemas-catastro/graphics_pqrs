@@ -145,17 +145,23 @@
     ![Captura desde 2025-03-27 14-21-15](https://github.com/user-attachments/assets/f2522287-c4c1-4fd5-9d65-da210ade4d60)
 
   - Asegúrate de que `sync() está configurado correctamente:
+    ![Captura desde 2025-03-27 14-23-07](https://github.com/user-attachments/assets/4962d55d-2fcb-49e0-b550-802a5288b427)
 
 
+### 🔹 8. Error: "JWT expired" o "Invalid token" en autenticación
+- 📌 Problema: El token JWT expira o no se valida correctamente.
+✅ Solución:
+  - Asegúrate de que los tokens tienen una expiración adecuada (`expiresIn: '1h'` en `jsonwebtoken`).
+  - Si el token expira, el frontend debe redirigir al login y generar uno nuevo.
 
 
+### 🔹 9. Error: "Vite HMR not working" o cambios en el frontend no se reflejan
+- 📌 Problema: Vite no actualiza correctamente los cambios en React.
+✅ Solución:
+  - Forzar **limpieza del caché** en Vite:
+    ![Captura desde 2025-03-27 14-26-32](https://github.com/user-attachments/assets/e80bea92-e16b-4b58-8bf3-22a61f149344)
 
-
-
-
-
-
-
-
+  - Si usas `TailwindCSS`, prueba añadir esto en `tailwind.config.js`:
+    ![Captura desde 2025-03-27 14-27-47](https://github.com/user-attachments/assets/75f68601-33ee-4a30-a333-f6f19fa00b4d)
 
 
